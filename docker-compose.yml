@@ -35,6 +35,12 @@ services:
     networks:
       - app-network
 
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - db   
+
   #MySQL Service
   db:
     image: mysql:5.7.22
