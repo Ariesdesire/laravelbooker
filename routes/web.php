@@ -29,5 +29,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::resource('activities','TourController');
+Route::resource('routes','RouteController');
+Route::resource('attractions','AttractionController', ['except'=>['index', 'create','show']]);

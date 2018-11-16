@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="/tours">Tours & Activities</a>
+                    <a href="/routes">Tours & Activities</a>
                     <a href="/about">About us</a>
                     <a href="/lengths">Tour Lengths</a>
                     <a href="/guestbook">Guestbook</a>

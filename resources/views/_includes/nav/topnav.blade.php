@@ -9,10 +9,10 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto active">
 
               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('tours') }}">{{ __('tours') }}</a>
+                  <a class="nav-link" href="{{ route('routes.index') }}">{{ __('tours') }}</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="{{ route('about') }}">{{ __('about') }}</a>
