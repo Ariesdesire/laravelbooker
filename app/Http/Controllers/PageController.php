@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Mail;
+use App\Mail\ContactForm;
 
 class PageController extends Controller
 {
@@ -59,6 +62,25 @@ class PageController extends Controller
     {
         return view('contact');
     }
+
+    /**
+     * Send the notification.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sendMail(Request $request)
+    {
+      $this->validate($request,[
+        'name' => 'required',
+        'email' => 'required|email',
+        'phone' => 'required|numeric',
+        'message' => 'required'
+      ]);
+        Mail::to('lawford.campbell@gmail.com')->send(new ContactForm($request));
+
+        return redirect('/');
+    }
+
 
 
     /**

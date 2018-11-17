@@ -24,6 +24,8 @@ Route::get('/detail', 'PageController@details')->name('details');
 Route::get('/contact', 'PageController@contact')->name('contact');
 
 
+Route::post('/contact', 'PageController@sendMail');
+
 
 Auth::routes();
 
