@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="container">
-<h1>{{$user->name}}'s Profile</h1>
+  <img class="img-rounded float-right" src="{{ $user->profile_pic}}" style="max-height:100px;"/>
+
+  <h1>{{$user->name}}'s Profile</h1>
 <p>See what {{$user->name}} has been up to
 
 </p>

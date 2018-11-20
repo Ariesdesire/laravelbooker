@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-      $table->dropColumn('phone_number')
+      $table->dropColumn('phone_number');
         Schema::dropIfExists('users');
     }
 }
