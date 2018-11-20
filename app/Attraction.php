@@ -17,4 +17,11 @@ class Attraction extends Model
        return $this->belongsTo('App\Route');
    }
 
+
+   public function user()
+   {
+       return $this->belongsTo('App\User');
+   }
+
+
 }

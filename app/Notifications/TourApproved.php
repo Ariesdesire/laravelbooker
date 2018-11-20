@@ -6,19 +6,25 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\NexmoMessage;
 
 class TourApproved extends Notification
 {
     use Queueable;
+
+    public $route;
+    public $name;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($route, $name)
     {
-        //
+      $this-> route = $route;
+      $this-> name = $name;
+
     }
 
     /**
@@ -29,7 +35,7 @@ class TourApproved extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail','nexmo'];
     }
 
     /**
@@ -41,10 +47,29 @@ class TourApproved extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('new Tour Booked')
+                      ->line("$this->name  likes:". $this->route->description)
+                    ->action('Scout The Route', route('tours'))
+                    ->line('Thank you for using choosing Halia Tours!');
     }
+
+
+    /**
+     * Get the nexmo representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return
+     **/
+    public function toNexmo($notifiable)
+    {
+        return (new NexmoMessage)
+                    ->content("$this->name  likes:". $this->route->description)
+                     ->from('13074604572');
+    }
+
+
+
+
 
     /**
      * Get the array representation of the notification.

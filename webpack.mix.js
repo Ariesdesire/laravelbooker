@@ -14,3 +14,8 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
    .version();
+
+
+   // <link rel="stylesheet" href="/node_modules/material-design-lite/material.min.css">
+   // <script src="/node_modules/material-design-lite/material.min.js"></script>
+   // <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

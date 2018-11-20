@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Attraction;
 use App\Route;
-
+use Auth;
 use Illuminate\Http\Request;
 
 class AttractionController extends Controller
@@ -35,6 +35,8 @@ class AttractionController extends Controller
       ]);
 
       $attraction = new Attraction();
+      $attraction->user()->associate(Auth::id());
+
       $attraction->title = $request->title;
       $attraction->description=$request->description;
 

@@ -82,6 +82,11 @@ class PageController extends Controller
     }
 
 
+public function profile($id)
+{
+  $user = User::with('routes')->find($id);
+  return view('profile')->with('user', $user);
+}
 
     /**
      * Show the guestbook dashboard.

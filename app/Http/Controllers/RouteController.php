@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Route;
 use Illuminate\Http\Request;
-
+use Auth;
+use App\Notifications\TourApproved;
 class RouteController extends Controller
 {
 
@@ -60,6 +61,8 @@ class RouteController extends Controller
       $route = new Route();
       $route->title = $request->title;
       $route->description=$request->description;
+      $route->user()->associate(Auth::id());
+      $route->user->notify(new TourApproved($route,Auth::user()->name));
       //If successful we want to redirect
       if( $route->save()){
         return redirect() ->route('routes.show', $route->id);
@@ -90,8 +93,14 @@ class RouteController extends Controller
      * @param  \App\Route  $route
      * @return \Illuminate\Http\Response
      */
-    public function edit(Route $route)
+    public function edit($id)
     {
+      $route = Route::findOrFail($id);
+      if($route->user->id !=Auth::id()){
+        return abort(403);
+      }
+     return view ('routes.edit');
+
         //
     }
 
@@ -102,10 +111,15 @@ class RouteController extends Controller
      * @param  \App\Route  $route
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Route $route)
+    public function update(Request $request,$id)
     {
-        //
-    }
+        $route = Route::findOrFail($id);
+        if($route->user->id !=Auth::id()){
+          return abort(403);
+        }
+       return view ('routes.edit');
+
+     }
 
     /**
      * Remove the specified resource from storage.

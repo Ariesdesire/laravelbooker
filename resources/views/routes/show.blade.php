@@ -1,42 +1,49 @@
 @extends('layouts.header')
-    <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/album.css') }}" rel="stylesheet">
 
 @section('content')
 <div class="container">
 
-  <div class="card mb-2">
-  <div class="card-header">
-{{$route->title}}  </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p>{{$route->description}}</p>
+  <section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">{{$route->title}} </h1>
+    <p class="lead text-muted">{{$route->description}}</p>
+    <p>
+      <a href="#" class="btn btn-primary my-2">Main call to action</a>
+      <a href="#" class="btn btn-secondary my-2">Book Now</a>
+    </p>
+  </div>
+</section>
 
-    </blockquote>
+
+
+<div class="album py-3 bg-light">
+  <div class="container">
+<div class="row">
+@foreach($route->attractions as $attraction)
+
+<div class="col-md-4">
+  <div class="card mb-4 box-shadow">
+    <img class="card-img-tops" src="http://placekitten.com/100/250" alt="Card image cap">
+    <div class="card-header">  {{$attraction->title}}
+
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{$attraction->description}}</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+        </div>
+        <small class="text-muted">9 mins</small>
+      </div>
+    </div>
   </div>
 </div>
 
-
-<div class="row align-items-center">
-@foreach($route->attractions as $attraction)
-
-
-  <div class="col-sm-4">
-    <div class="card mb-2">
-    <div class="card-header">
-  {{$attraction->title}}  </div>
-    <div class="card-body">
-      <blockquote class="blockquote mb-0">
-        <p>{{$attraction->description}}</p>
-
-      </blockquote>
-    </div>
-  </div>
-
-
-  </div>
-
-
 @endforeach
+</div>
+</div>
 </div>
 
 

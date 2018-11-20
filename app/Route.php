@@ -18,4 +18,10 @@ class Route extends Model
     {
         return $this->hasMany('App\Attraction');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 }

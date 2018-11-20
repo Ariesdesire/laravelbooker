@@ -33,3 +33,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('routes','RouteController');
 Route::resource('attractions','AttractionController', ['except'=>['index', 'create','show']]);
+
+
+Route::get('/profile/{user}','PageController@profile')->name('profile');
+
+
+Route::get('/upload', "UploadController@getUpload")->name('upload');
+Route::post('/upload', "UploadController@postUpload");
